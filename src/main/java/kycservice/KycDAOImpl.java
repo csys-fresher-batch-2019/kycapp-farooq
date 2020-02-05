@@ -10,10 +10,11 @@ public class KycDAOImpl implements KycDAO {
 
 		boolean result = false;
 Connection connection=null;
+PreparedStatement stmt=null;
 		try {
 			 connection = TestConnect.getConnection();
 			String sql = "select aadhar_card_number,user_name,dob from aadharcard where aadhar_card_number=? and user_name=? and dob=?";
-			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt = connection.prepareStatement(sql);
 			stmt.setLong(1, service.getAadharCardNumber());
 			stmt.setString(2, service.getName());
 			java.sql.Date date = java.sql.Date.valueOf(service.getDob());
@@ -24,11 +25,16 @@ Connection connection=null;
 				result = true;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
-			connection.close();
+			if(connection!=null) {
+				connection.close();	
+			}
+			if(stmt!=null) {
+				stmt.close();	
+			}
+			
 		}
 
 		return result;
@@ -38,12 +44,12 @@ Connection connection=null;
 
 		boolean result = false;
 		Connection connection=null;
+		PreparedStatement stmt=null;
 		try {
 			 connection = TestConnect.getConnection();
 			String sql = "select pan_card_number,user_name,dob from aadharcard where pan_card_number=? and user_name=? and dob=? ";
-			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, service.getPanCardNumber());
-			//System.out.println(service.getPanCardNumber());
 			stmt.setString(2, service.getName());
 			java.sql.Date date = java.sql.Date.valueOf(service.getDob());
 			stmt.setDate(3, date);
@@ -54,10 +60,15 @@ Connection connection=null;
 				result = true;
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			connection.close();
+			if(connection!=null) {
+				connection.close();	
+			}
+			if(stmt!=null) {
+				stmt.close();	
+			}
+			
 		}
 
 		return result;
@@ -70,11 +81,12 @@ Connection connection=null;
 		
 		boolean result = false;
 		Connection connection=null;
+		PreparedStatement stmt=null;
 		
 	 try {
 		connection = TestConnect.getConnection();
 			String sql = "select ration_card_number,user_name,dob from aadharcard where ration_card_number=? and user_name=? and dob=? ";
-			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt = connection.prepareStatement(sql);
 			stmt.setString(1, service.getRationCardNumber());
 			stmt.setString(2, service.getName());
 			java.sql.Date date = java.sql.Date.valueOf(service.getDob());
@@ -86,11 +98,16 @@ Connection connection=null;
 				result = true;
 			}
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	 finally {
-		 connection.close();
+		 if(connection!=null) {
+				connection.close();	
+			}
+			if(stmt!=null) {
+				stmt.close();	
+			}
+			
 	 }
 
 		return result;
@@ -104,10 +121,11 @@ Connection connection=null;
 		boolean result = false;
 
 		Connection connection=null;
+		PreparedStatement stmt=null;
 		try {
 			connection = TestConnect.getConnection();
 			String sql = "select aadhar_card_number,user_name,dob from aadharcard where aadhar_card_number=? and user_name=? and dob=? and address=?";
-			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt = connection.prepareStatement(sql);
 			stmt.setLong(1, service.getAadharCardNumber());
 			stmt.setString(2, service.getName());
 			java.sql.Date date = java.sql.Date.valueOf(service.getDob());
@@ -120,10 +138,16 @@ Connection connection=null;
 			}
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			connection.close();
+			if(connection!=null) {
+				connection.close();	
+			}
+			if(stmt!=null) {
+				stmt.close();	
+			}
+			
+			
 		}
 		
 		return result;
