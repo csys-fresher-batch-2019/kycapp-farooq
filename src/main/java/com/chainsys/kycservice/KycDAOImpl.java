@@ -1,11 +1,16 @@
-package kycservice;
+package com.chainsys.kycservice;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import kycservice.Loggerutil.Logger;
+import kycservice.DbException;
+import kycservice.KycDAO;
+import kycservice.KycServices;
+import kycservice.TestConnect;
+
+
 
 public class KycDAOImpl implements KycDAO {
 
@@ -107,7 +112,7 @@ public class KycDAOImpl implements KycDAO {
 			}
 			return result;
 		} 
-	public boolean VerifyAadharCardWithAddress(KycServices service) throws DbException {
+	public boolean verifyAadharCardWithAddress(KycServices service) throws DbException {
 		boolean result = false;
 
 		

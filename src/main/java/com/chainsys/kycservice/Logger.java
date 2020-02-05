@@ -1,4 +1,4 @@
-package kycservice.Loggerutil;
+package com.chainsys.kycservice;
 
 public class Logger {
 
