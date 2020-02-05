@@ -8,18 +8,27 @@ public class KycDAOImpl implements KycDAO {
 
 	public boolean verifyAadharCardNumber(KycServices service) throws Exception {
 
-		Connection connection = TestConnect.getConnection();
-		String sql = "select aadhar_card_number,user_name,dob from aadharcard where aadhar_card_number=? and user_name=? and dob=?";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setLong(1, service.getAadharCardNumber());
-		stmt.setString(2, service.getName());
-		java.sql.Date date = java.sql.Date.valueOf(service.getDob());
-		stmt.setDate(3, date);
-
-		ResultSet rs = stmt.executeQuery();
 		boolean result = false;
-		if (rs.next()) {
-			result = true;
+Connection connection=null;
+		try {
+			 connection = TestConnect.getConnection();
+			String sql = "select aadhar_card_number,user_name,dob from aadharcard where aadhar_card_number=? and user_name=? and dob=?";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setLong(1, service.getAadharCardNumber());
+			stmt.setString(2, service.getName());
+			java.sql.Date date = java.sql.Date.valueOf(service.getDob());
+			stmt.setDate(3, date);
+
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				result = true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			connection.close();
 		}
 
 		return result;
@@ -27,19 +36,28 @@ public class KycDAOImpl implements KycDAO {
 
 	public boolean verifyPanCard(KycServices service) throws Exception {
 
-		Connection connection = TestConnect.getConnection();
-		String sql = "select pan_card_number,user_name,dob from aadharcard where pan_card_number=? and user_name=? and dob=? ";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setString(1, service.getPanCardNumber());
-		//System.out.println(service.getPanCardNumber());
-		stmt.setString(2, service.getName());
-		java.sql.Date date = java.sql.Date.valueOf(service.getDob());
-		stmt.setDate(3, date);
-
-		ResultSet rs = stmt.executeQuery();
 		boolean result = false;
-		if (rs.next()) {
-			result = true;
+		Connection connection=null;
+		try {
+			 connection = TestConnect.getConnection();
+			String sql = "select pan_card_number,user_name,dob from aadharcard where pan_card_number=? and user_name=? and dob=? ";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, service.getPanCardNumber());
+			//System.out.println(service.getPanCardNumber());
+			stmt.setString(2, service.getName());
+			java.sql.Date date = java.sql.Date.valueOf(service.getDob());
+			stmt.setDate(3, date);
+
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				result = true;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			connection.close();
 		}
 
 		return result;
@@ -50,19 +68,30 @@ public class KycDAOImpl implements KycDAO {
 
 	public boolean verifyRationCard(KycServices service) throws Exception {
 		
-		Connection connection = TestConnect.getConnection();
-		String sql = "select ration_card_number,user_name,dob from aadharcard where ration_card_number=? and user_name=? and dob=? ";
-		PreparedStatement stmt = connection.prepareStatement(sql);
-		stmt.setString(1, service.getRationCardNumber());
-		stmt.setString(2, service.getName());
-		java.sql.Date date = java.sql.Date.valueOf(service.getDob());
-		stmt.setDate(3, date);
-
-		ResultSet rs = stmt.executeQuery();
 		boolean result = false;
-		if (rs.next()) {
-			result = true;
-		}
+		Connection connection=null;
+		
+	 try {
+		connection = TestConnect.getConnection();
+			String sql = "select ration_card_number,user_name,dob from aadharcard where ration_card_number=? and user_name=? and dob=? ";
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setString(1, service.getRationCardNumber());
+			stmt.setString(2, service.getName());
+			java.sql.Date date = java.sql.Date.valueOf(service.getDob());
+			stmt.setDate(3, date);
+
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				result = true;
+			}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	 finally {
+		 connection.close();
+	 }
 
 		return result;
 
@@ -74,7 +103,7 @@ public class KycDAOImpl implements KycDAO {
 	public boolean VerifyAadharCardWithAddress(KycServices service) throws Exception {
 		boolean result = false;
 
-		Connection connection;
+		Connection connection=null;
 		try {
 			connection = TestConnect.getConnection();
 			String sql = "select aadhar_card_number,user_name,dob from aadharcard where aadhar_card_number=? and user_name=? and dob=? and address=?";
@@ -93,6 +122,8 @@ public class KycDAOImpl implements KycDAO {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			connection.close();
 		}
 		
 		return result;
