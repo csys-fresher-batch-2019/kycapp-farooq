@@ -1,4 +1,4 @@
-package kycservice;
+package kycservice.LoggerUtil;
 
 public class Logger {
 
@@ -20,7 +20,7 @@ System.out.println(message);
 
 public void error(Object message)
 {
-System.err.println(message);	
+System.out.println(message);	
 }
 
 

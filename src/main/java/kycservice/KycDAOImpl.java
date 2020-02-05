@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import kycservice.LoggerUtil.Logger;
+
 public class KycDAOImpl implements KycDAO {
 
 	Logger logger = Logger.getInstance();
