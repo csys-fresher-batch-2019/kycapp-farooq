@@ -3,14 +3,15 @@ package kycservice;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import kycservice.LoggerUtil.Logger;
+import kycservice.Loggerutil.Logger;
 
 public class KycDAOImpl implements KycDAO {
 
 	Logger logger = Logger.getInstance();
 
-	public boolean verifyAadharCardNumber(KycServices service) throws Exception {
+	public boolean verifyAadharCardNumber(KycServices service) throws DbException {
 
 		boolean result = false;
 		String sql = "select aadhar_card_number,user_name,dob from aadharcard where aadhar_card_number=? and user_name=? and dob=?";
@@ -28,15 +29,21 @@ public class KycDAOImpl implements KycDAO {
 						result = true;
 					}
 				} catch (Exception e) {
-					logger.error(e);
+					logger.error(e);//supress
+					throw new DbException("INVALID AADHAR CARD NUMBER");
 				}
+			} catch (SQLException e1) {
+				throw new DbException("UNABLE TOM EXECUTE QUERY");
+			} catch (Exception e1) {
+				
+				throw new DbException("INVALID AADHAR CARD NUMBER");
 			}
 
 			return result;
 		} 
 	
 
-	public boolean verifyPanCard(KycServices service) throws Exception {
+	public boolean verifyPanCard(KycServices service) throws DbException {
 
 		boolean result = false;
 		String sql = "select pan_card_number,user_name,dob from aadharcard where pan_card_number=? and user_name=? and dob=? ";
@@ -57,15 +64,19 @@ public class KycDAOImpl implements KycDAO {
 						result = true;
 					}
 				} catch (Exception e) {
-					logger.error(e);
+					throw new DbException("INVALID PAN CARD");
 
 				}
+			} catch (SQLException e1) {
+				throw new DbException("unable to process");
+			} catch (Exception e1) {
+				throw new DbException("unable to process");
 			}
 			return result;
 
 		} 	
 
-	public boolean verifyRationCard(KycServices service) throws Exception {
+	public boolean verifyRationCard(KycServices service) throws DbException {
 
 		boolean result = false;
 		String sql = "select ration_card_number,user_name,dob from aadharcard where ration_card_number=? and user_name=? and dob=? ";
@@ -87,11 +98,16 @@ public class KycDAOImpl implements KycDAO {
 					}
 				} catch (Exception e) {
 					logger.error(e);
+					throw new DbException("INVALID RATION CARD NUMBER");
 				}
+			} catch (SQLException e1) {
+				throw new DbException("unable to process");
+			} catch (Exception e1) {
+				throw new DbException("unable to process");
 			}
 			return result;
 		} 
-	public boolean VerifyAadharCardWithAddress(KycServices service) throws Exception {
+	public boolean VerifyAadharCardWithAddress(KycServices service) throws DbException {
 		boolean result = false;
 
 		
@@ -117,8 +133,13 @@ try(		ResultSet rs = stmt.executeQuery();) {
 
 		} catch (Exception e) {
 			logger.error(e);
+			throw new DbException("INVALID AADHAR CARD NUMBER");
 		} 
 
+			} catch (SQLException e1) {
+				throw new DbException("unable to process");
+			} catch (Exception e1) {
+				throw new DbException("unable to process");
 			}
 			return result;
 	}}

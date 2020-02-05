@@ -1,4 +1,4 @@
-package kycservice.LoggerUtil;
+package kycservice.Loggerutil;
 
 public class Logger {
 
