@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 
 public class KycDAOImpl implements KycDAO {
 
+	Logger logger = Logger.getInstance();
+	
 	public boolean verifyAadharCardNumber(KycServices service) throws Exception {
 
 		boolean result = false;
@@ -25,7 +27,7 @@ PreparedStatement stmt=null;
 				result = true;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		finally {
 			if(connection!=null) {
@@ -60,7 +62,8 @@ PreparedStatement stmt=null;
 				result = true;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e);
+			
 		}finally {
 			if(connection!=null) {
 				connection.close();	
@@ -98,7 +101,7 @@ PreparedStatement stmt=null;
 				result = true;
 			}
 	} catch (Exception e) {
-		e.printStackTrace();
+		logger.error(e);
 	}
 	 finally {
 		 if(connection!=null) {
@@ -138,7 +141,7 @@ PreparedStatement stmt=null;
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e);
 		}finally {
 			if(connection!=null) {
 				connection.close();	
