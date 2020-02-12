@@ -18,7 +18,6 @@ public class TestVerifyRationCard {
 			boolean result=obj.verifyRationCard(s);
 			System.out.println(result);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

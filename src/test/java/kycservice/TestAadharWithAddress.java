@@ -15,7 +15,6 @@ public class TestAadharWithAddress {
 			boolean result=obj.verifyAadharCardWithAddress(s);
 			System.out.println(result);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	

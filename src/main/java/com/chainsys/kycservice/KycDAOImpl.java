@@ -19,7 +19,7 @@ public class KycDAOImpl implements KycDAO {
 	public boolean verifyAadharCardNumber(KycServices service) throws DbException {
 
 		boolean result = false;
-		String sql = "select aadhar_card_number,user_name,dob from aadharcard where aadhar_card_number=? and user_name=? and dob=?";
+		String sql = "select aadhar_card_number,user_name,dob from kycdetails where aadhar_card_number=? and user_name=? and dob=?";
 			try (Connection connection = TestConnect.getConnection();
 					PreparedStatement stmt = connection.prepareStatement(sql)) {
 
@@ -34,11 +34,11 @@ public class KycDAOImpl implements KycDAO {
 						result = true;
 					}
 				} catch (Exception e) {
-					logger.error(e);//supress
+					logger.error(e);//suppress
 					throw new DbException("INVALID AADHAR CARD NUMBER");
 				}
 			} catch (SQLException e1) {
-				throw new DbException("UNABLE TOM EXECUTE QUERY");
+				throw new DbException("UNABLE TO EXECUTE QUERY");
 			} catch (Exception e1) {
 				
 				throw new DbException("INVALID AADHAR CARD NUMBER");
@@ -51,7 +51,7 @@ public class KycDAOImpl implements KycDAO {
 	public boolean verifyPanCard(KycServices service) throws DbException {
 
 		boolean result = false;
-		String sql = "select pan_card_number,user_name,dob from aadharcard where pan_card_number=? and user_name=? and dob=? ";
+		String sql = "select pan_card_number,user_name,dob from kycdetails where pan_card_number=? and user_name=? and dob=? ";
 	
 
 			try (Connection connection = TestConnect.getConnection();
@@ -84,7 +84,7 @@ public class KycDAOImpl implements KycDAO {
 	public boolean verifyRationCard(KycServices service) throws DbException {
 
 		boolean result = false;
-		String sql = "select ration_card_number,user_name,dob from aadharcard where ration_card_number=? and user_name=? and dob=? ";
+		String sql = "select ration_card_number,user_name,dob from kycdetails where ration_card_number=? and user_name=? and dob=? ";
 	
 			try (Connection connection = TestConnect.getConnection();
 
@@ -116,7 +116,7 @@ public class KycDAOImpl implements KycDAO {
 		boolean result = false;
 
 		
-			String sql = "select aadhar_card_number,user_name,dob from aadharcard where aadhar_card_number=? and user_name=? and dob=? and address=?";
+			String sql = "select aadhar_card_number,user_name,dob from kycdetails where aadhar_card_number=? and user_name=? and dob=? and address=?";
 		
 			try(Connection connection = TestConnect.getConnection();
 					PreparedStatement stmt = connection.prepareStatement(sql)){
