@@ -35,13 +35,13 @@ public class KycDAOImpl implements KycDAO {
 					}
 				} catch (Exception e) {
 					logger.error(e);//suppress
-					throw new DbException("INVALID AADHAR CARD NUMBER");
+					throw new DbException(ErrorMessage.INVALID_AADHAR_CARD_NUMBER);
 				}
 			} catch (SQLException e1) {
-				throw new DbException("UNABLE TO EXECUTE QUERY");
+				throw new DbException(ErrorMessage.UNABLE_TO_EXECUTE_QUERY);
 			} catch (Exception e1) {
 				
-				throw new DbException("INVALID AADHAR CARD NUMBER");
+				throw new DbException(ErrorMessage.INVALID_AADHAR_CARD_NUMBER);
 			}
 
 			return result;
@@ -69,13 +69,13 @@ public class KycDAOImpl implements KycDAO {
 						result = true;
 					}
 				} catch (Exception e) {
-					throw new DbException("INVALID PAN CARD");
+					throw new DbException(ErrorMessage.INVALID_PAN_CARD_NUMBER);
 
 				}
 			} catch (SQLException e1) {
-				throw new DbException("unable to process");
+				throw new DbException(ErrorMessage.UNABLE_TO_EXECUTE_QUERY);
 			} catch (Exception e1) {
-				throw new DbException("unable to process");
+				throw new DbException(ErrorMessage.INVALID_PAN_CARD_NUMBER);
 			}
 			return result;
 
@@ -103,12 +103,12 @@ public class KycDAOImpl implements KycDAO {
 					}
 				} catch (Exception e) {
 					logger.error(e);
-					throw new DbException("INVALID RATION CARD NUMBER");
+					throw new DbException(ErrorMessage.INVALID_RATION_CARD_NUMBER);
 				}
 			} catch (SQLException e1) {
-				throw new DbException("unable to process");
+				throw new DbException(ErrorMessage.UNABLE_TO_EXECUTE_QUERY);
 			} catch (Exception e1) {
-				throw new DbException("unable to process");
+				throw new DbException(ErrorMessage.INVALID_RATION_CARD_NUMBER);
 			}
 			return result;
 		} 
@@ -138,13 +138,13 @@ try(		ResultSet rs = stmt.executeQuery();) {
 
 		} catch (Exception e) {
 			logger.error(e);
-			throw new DbException("INVALID AADHAR CARD NUMBER");
+			throw new DbException(ErrorMessage.INVALID_AADHAR_CARD_NUMBER);
 		} 
 
 			} catch (SQLException e1) {
-				throw new DbException("unable to process");
+				throw new DbException(ErrorMessage.UNABLE_TO_EXECUTE_QUERY);
 			} catch (Exception e1) {
-				throw new DbException("unable to process");
+				throw new DbException(ErrorMessage.INVALID_AADHAR_CARD_NUMBER);
 			}
 			return result;
 	}}
